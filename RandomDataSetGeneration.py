@@ -9,7 +9,10 @@ def GenerateVector(Dimension):
     return v
 
 def RandomDataSet(deviation, InputDimension, Samples):
-    os.mkdir("DataFiles")
+    try:
+        os.mkdir("DataFiles")
+    except:
+        pass
     theta = GenerateVector(InputDimension)
     filename = ""
     for value in theta:
