@@ -1,5 +1,6 @@
 #import numpy as np
 import random as rd
+import os
 
 def GenerateVector(Dimension):
     v = list()
@@ -8,6 +9,7 @@ def GenerateVector(Dimension):
     return v
 
 def RandomDataSet(deviation, InputDimension, Samples):
+    os.mkdir("DataFiles")
     theta = GenerateVector(InputDimension)
     filename = ""
     for value in theta:
