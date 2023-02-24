@@ -2,7 +2,7 @@ import FirstProperML as ml
 import RandomDataSetGeneration as rg
 
 deviation = 0.01
-dimension = 10
+dimension = 20
 sampleSize = 500
 alpha = 0.01
 accuracy = 0.005
