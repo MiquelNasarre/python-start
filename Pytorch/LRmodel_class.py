@@ -28,3 +28,11 @@ class model:
         # Applies gradient descent
         self.optimizer.step()
         self.optimizer.zero_grad()
+
+    def FullTrainingSetStep(self, training_set):
+        for x, y in training_set:
+            self.hypothesis_f(x)
+            self.loss_f(y)
+            self.grad_loss()
+        self.optimizer.step()
+        self.optimizer.zero_grad()
