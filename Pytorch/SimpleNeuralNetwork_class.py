@@ -10,7 +10,7 @@ class model:
             self.theta.insert(i, list())
             self.optimizer.insert(i, list())
             for j in range(self.layout[i + 1]):
-                self.theta[i].insert(j, th.rand(thts, requires_grad = True))
+                self.theta[i].insert(j, th.rand(thts + 1, requires_grad = True))
                 self.optimizer[i].insert(j, th.optim.SGD([self.theta[i][j]], lr = alpha))
 
     def g(self, x):
@@ -18,12 +18,12 @@ class model:
 
     def hypothesis_f(self, x):
         a = list()
-        a.insert(0, x)
+        a.insert(0, th.cat([x, th.tensor([1])]))
         for i in range(self.layout.__len__() - 1):
-            a.insert(i + 1, th.zeros(self.layout[i + 1]))
+            a.insert(i + 1, th.ones(self.layout[i + 1] + 1))
             for j in range(self.layout[i + 1]):
                 a[i + 1][j] = self.g((a[i] * self.theta[i][j]).sum())
-        self.hypothesis = a[-1]
+        self.hypothesis = a[-1][:-1]
         
     def loss_f(self, y):
         self.loss = ((self.hypothesis - y) ** 2).sum()
